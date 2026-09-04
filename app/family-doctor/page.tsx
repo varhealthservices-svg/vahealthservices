@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /* -------------------------------------------------------------------------- */
@@ -311,17 +312,20 @@ const NAV_LINKS = [
 const CARE_LINES = [
   {
     title: "Home Health",
-    label: "Nurse visiting a patient at home",
+    src: "/images/home/home-health.webp",
+    alt: "A home health nurse checking an older man's blood pressure in his living room",
     href: "/services",
   },
   {
     title: "Palliative Care",
-    label: "Clinician comforting a patient",
+    src: "/images/home/palliative.webp",
+    alt: "A caregiver holding an elderly patient's hand over a soft blanket",
     href: "/services",
   },
   {
     title: "Hospice",
-    label: "Family with a care team member",
+    src: "/images/home/hospice.webp",
+    alt: "A quiet sunlit bedroom with an armchair and fresh flowers beside the bed",
     href: "/services",
   },
 ];
@@ -625,10 +629,13 @@ export default function HomePage() {
           </div>
 
           <div className="relative h-[320px] lg:h-[560px]">
-            <Placeholder
-              label="Nurse with a patient at home"
-              className="absolute inset-0"
-              tone="grey"
+            <Image
+              src="/images/home/hero.webp"
+              alt="A home health nurse sitting with an elderly woman in her living room"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
             />
           </div>
         </div>
@@ -778,10 +785,13 @@ export default function HomePage() {
       {/*  7. Clinical programs band                                        */}
       {/* ---------------------------------------------------------------- */}
       <section className="relative">
-        <Placeholder
-          label="Care team visiting a patient"
-          className="w-full h-[280px] md:h-[420px]"
-          tone="cool"
+        <Image
+          src="/images/home/recovery-wide.webp"
+          alt="A therapist walking alongside an older man using a cane in his hallway"
+          width={2000}
+          height={840}
+          sizes="100vw"
+          className="w-full h-[280px] md:h-[420px] object-cover"
         />
       </section>
 
@@ -1090,20 +1100,25 @@ export default function HomePage() {
 
 function CareLineCard({
   title,
-  label,
+  src,
+  alt,
   href,
 }: {
   title: string;
-  label: string;
+  src: string;
+  alt: string;
   href: string;
 }) {
   return (
     <a href={href} className="relative block pb-12 group">
       <div className="rounded-xl overflow-hidden shadow-[0_16px_40px_rgba(16,49,120,0.12)]">
-        <Placeholder
-          label={label}
-          className="h-[220px] transition-transform duration-500 group-hover:scale-105"
-          tone="cool"
+        <Image
+          src={src}
+          alt={alt}
+          width={800}
+          height={560}
+          sizes="(max-width: 768px) 100vw, 400px"
+          className="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 
