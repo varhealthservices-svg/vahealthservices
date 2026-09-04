@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /* -------------------------------------------------------------------------- */
-/*  Theme tokens (taken from Medify core/includes/default-options.php)         */
+/*  Theme tokens                                                              */
 /* -------------------------------------------------------------------------- */
 
 const NAVY = "#0a3380";
@@ -14,6 +14,9 @@ const MUTED = "#93919d";
 const DARK = "#313131";
 
 const TEAL_GRADIENT = `linear-gradient(105deg, ${TEAL} 0%, ${BLUE} 100%)`;
+
+const PHONE_DISPLAY = "(703) 333-5288";
+const PHONE_HREF = "tel:+17033335288";
 
 /* -------------------------------------------------------------------------- */
 /*  Placeholder image block — swap for <Image /> once real assets are added    */
@@ -63,7 +66,7 @@ function Placeholder({
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Small section eyebrow: "— BENEFITS —"                                     */
+/*  Section eyebrow                                                           */
 /* -------------------------------------------------------------------------- */
 
 function Eyebrow({
@@ -87,9 +90,7 @@ function Eyebrow({
 
   return (
     <div
-      className={`flex items-center gap-2 mb-4 ${
-        center ? "justify-center" : ""
-      }`}
+      className={`flex items-center gap-2 mb-4 ${center ? "justify-center" : ""}`}
       style={{ color }}
     >
       {bothSides && dash}
@@ -124,7 +125,6 @@ function Counter({ target, label }: { target: number; label: string }) {
 
         const tick = (now: number) => {
           const progress = Math.min((now - start) / duration, 1);
-          // easeOutCubic
           const eased = 1 - Math.pow(1 - progress, 3);
           setValue(Math.round(target * eased));
           if (progress < 1) requestAnimationFrame(tick);
@@ -141,10 +141,7 @@ function Counter({ target, label }: { target: number; label: string }) {
 
   return (
     <div ref={ref} className="text-center">
-      <div
-        className="text-4xl md:text-5xl font-extrabold"
-        style={{ color: ORANGE }}
-      >
+      <div className="text-4xl md:text-5xl font-extrabold" style={{ color: ORANGE }}>
         {value}+
       </div>
       <div
@@ -158,7 +155,7 @@ function Counter({ target, label }: { target: number; label: string }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Icons (inline, so no icon dependency is required)                         */
+/*  Icons                                                                     */
 /* -------------------------------------------------------------------------- */
 
 const iconProps = {
@@ -177,35 +174,31 @@ function HeartPulseIcon({ color }: { color: string }) {
   );
 }
 
-function CaduceusIcon({ color }: { color: string }) {
+function CalendarIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 32 32" className="w-10 h-10" stroke={color} {...iconProps}>
-      <path d="M16 4v24" />
-      <path d="M8 9c0-3 3-5 8-5s8 2 8 5" />
-      <path d="M10 14c2 2 10 2 12 0" />
-      <path d="M11 20c2 2 8 2 10 0" />
-      <path d="M16 28c-3 0-5-2-5-4h10c0 2-2 4-5 4Z" />
+      <rect x="5" y="7" width="22" height="20" rx="2" />
+      <path d="M5 13h22M11 4v6M21 4v6" />
     </svg>
   );
 }
 
-function ResearchIcon({ color }: { color: string }) {
+function TeamIcon({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className="w-10 h-10" stroke={color} {...iconProps}>
+      <circle cx="12" cy="11" r="4" />
+      <circle cx="23" cy="13" r="3" />
+      <path d="M4 26c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+      <path d="M22 19c3.4 0 6 2 6 5" />
+    </svg>
+  );
+}
+
+function ProgramIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 32 32" className="w-10 h-10" stroke={color} {...iconProps}>
       <rect x="7" y="4" width="18" height="24" rx="2" />
       <path d="M11 11h10M11 16h10M11 21h6" />
-      <circle cx="22" cy="22" r="4" />
-      <path d="M22 20v4M20 22h4" />
-    </svg>
-  );
-}
-
-function AwardIcon({ color }: { color: string }) {
-  return (
-    <svg viewBox="0 0 32 32" className="w-10 h-10" stroke={color} {...iconProps}>
-      <path d="M10 5h12v5a6 6 0 0 1-12 0V5Z" />
-      <path d="M10 7H7v2a4 4 0 0 0 3 3.9M22 7h3v2a4 4 0 0 1-3 3.9" />
-      <path d="M16 16v6M12 27h8l-1-5h-6l-1 5Z" />
     </svg>
   );
 }
@@ -221,36 +214,41 @@ function StethoscopeIcon({ color }: { color: string }) {
   );
 }
 
-function TeddyIcon({ color }: { color: string }) {
+function TherapyIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 32 32" className="w-12 h-12" stroke={color} {...iconProps}>
-      <circle cx="16" cy="17" r="8" />
-      <circle cx="8" cy="8" r="4" />
-      <circle cx="24" cy="8" r="4" />
-      <circle cx="13" cy="16" r="1" />
-      <circle cx="19" cy="16" r="1" />
-      <path d="M13 21c1.5 1.5 4.5 1.5 6 0" />
+      <circle cx="16" cy="6" r="3" />
+      <path d="M16 9v9M16 18l-5 9M16 18l5 9M8 13l8-2 8 2" />
     </svg>
   );
 }
 
-function MicroscopeIcon({ color }: { color: string }) {
+function ShieldIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 32 32" className="w-12 h-12" stroke={color} {...iconProps}>
-      <path d="M13 5h5l2 8h-9l2-8Z" />
-      <path d="M15 13v6" />
-      <path d="M9 25a9 9 0 0 1 14-7" />
-      <path d="M6 27h20" />
-      <path d="M11 19h8" />
+      <path d="M16 3l11 4v9c0 7-5 11-11 13-6-2-11-6-11-13V7l11-4Z" />
+      <path d="M11 16l3.5 3.5L22 12" />
     </svg>
   );
 }
 
-function ClockIcon({ color }: { color: string }) {
+function HomeHeartIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 32 32" className="w-12 h-12" stroke={color} {...iconProps}>
-      <circle cx="16" cy="16" r="12" />
-      <path d="M16 9v7l5 3" />
+      <path d="M4 14 16 4l12 10" />
+      <path d="M7 13v14h18V13" />
+      <path d="M16 24s-4-2.5-4-5a2.4 2.4 0 0 1 4-1.5A2.4 2.4 0 0 1 20 19c0 2.5-4 5-4 5Z" />
+    </svg>
+  );
+}
+
+function HandsIcon({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className="w-12 h-12" stroke={color} {...iconProps}>
+      <path d="M6 18V9a2 2 0 0 1 4 0v6" />
+      <path d="M10 15V7a2 2 0 0 1 4 0v8" />
+      <path d="M14 15V8a2 2 0 0 1 4 0v9" />
+      <path d="M18 17v-4a2 2 0 0 1 4 0v8a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7v-3" />
     </svg>
   );
 }
@@ -270,10 +268,6 @@ function ArrowRight({ className = "" }: { className?: string }) {
     </svg>
   );
 }
-
-/* -------------------------------------------------------------------------- */
-/*  Decorative background cross (the theme sprinkles these behind sections)    */
-/* -------------------------------------------------------------------------- */
 
 function Cross({
   className = "",
@@ -295,108 +289,226 @@ function Cross({
       className={`absolute pointer-events-none ${className}`}
       style={{ opacity }}
     >
-      <path
-        d="M12 2h8v10h10v8H20v10h-8V20H2v-8h10V2Z"
-        fill={color}
-      />
+      <path d="M12 2h8v10h10v8H20v10h-8V20H2v-8h10V2Z" fill={color} />
     </svg>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Data                                                                      */
+/*  Content                                                                   */
 /* -------------------------------------------------------------------------- */
 
 const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "Pages", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Portfolio", href: "#" },
-  { label: "Shop", href: "#" },
-  { label: "Contacts", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Insurance", href: "#insurance" },
+  { label: "About", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
-const FEATURE_CARDS = [
-  { title: "Premium Care", label: "Premium care" },
-  { title: "Quality Therapy", label: "Quality therapy" },
-  { title: "Laboratory Tests", label: "Laboratory tests" },
+/* Three lines of business, mirroring the reference site's top-level split. */
+const CARE_LINES = [
+  {
+    title: "Home Health",
+    label: "Nurse visiting a patient at home",
+    href: "/services",
+  },
+  {
+    title: "Palliative Care",
+    label: "Clinician comforting a patient",
+    href: "/services",
+  },
+  {
+    title: "Hospice",
+    label: "Family with a care team member",
+    href: "/services",
+  },
 ];
 
+/* Counters — whole numbers only, no percentages or quality ratings. */
 const COUNTERS = [
-  { target: 1200, label: "Satisfied Patients", Icon: HeartPulseIcon },
-  { target: 32, label: "Health Sections", Icon: CaduceusIcon },
-  { target: 78, label: "Kinds of Research", Icon: ResearchIcon },
-  { target: 15, label: "Awards Winning", Icon: AwardIcon },
+  { target: 20, label: "Years of Service", Icon: CalendarIcon },
+  { target: 700, label: "Patients Under Care", Icon: HeartPulseIcon },
+  { target: 100, label: "Team Members", Icon: TeamIcon },
+  { target: 12, label: "Clinical Programs", Icon: ProgramIcon },
 ];
 
 const SERVICE_CARDS = [
-  { title: "Family Care", Icon: StethoscopeIcon },
-  { title: "Pediatrics Care", Icon: TeddyIcon },
-  { title: "Advanced Care", Icon: MicroscopeIcon },
+  {
+    title: "Skilled Nursing",
+    Icon: StethoscopeIcon,
+    body: "Registered and licensed practical nurses provide disease education, medication management, wound and ostomy care, infusion therapy, and pain management in the home.",
+  },
+  {
+    title: "Skilled Therapy",
+    Icon: TherapyIcon,
+    body: "Physical, occupational, and speech therapists work with you at home to restore strength, mobility, and independence after illness, injury, or surgery.",
+  },
+  {
+    title: "Specialty Programs",
+    Icon: ShieldIcon,
+    body: "Certified wound therapy, lymphedema treatment, Parkinson's and MS care, tracheostomy and ostomy care, and orthopedic protocols for knee, hip, and shoulder.",
+  },
 ];
 
-const SERVICE_BODY =
-  "Family medicine is one of the most demanded fields in the provision of medical care in Europe.";
-
-const GALLERY_FILTERS = [
+const SERVICE_FILTERS = [
   "All",
-  "Clinic",
-  "Family",
-  "Laboratory",
-  "Pediatrics",
+  "Nursing",
   "Therapy",
+  "Support",
+  "Specialty",
 ];
 
-const GALLERY_ITEMS = [
-  { label: "Clinic reception", category: "Clinic" },
-  { label: "Doctors reviewing scan", category: "Laboratory" },
-  { label: "Blood pressure check", category: "Therapy" },
-  { label: "MRI scanner", category: "Laboratory" },
-  { label: "Surgeon at work", category: "Clinic" },
-  { label: "Pediatric check-up", category: "Pediatrics" },
+const SERVICE_GRID = [
+  {
+    title: "Skilled Nursing",
+    category: "Nursing",
+    label: "Nurse with patient",
+    text: "Disease education, medication management, wound and ostomy care.",
+  },
+  {
+    title: "Physical Therapy",
+    category: "Therapy",
+    label: "Physical therapy session",
+    text: "Restoring strength, balance, and mobility after surgery or illness.",
+  },
+  {
+    title: "Occupational Therapy",
+    category: "Therapy",
+    label: "Occupational therapy at home",
+    text: "Regaining independence in daily activities within the home.",
+  },
+  {
+    title: "Speech Therapy",
+    category: "Therapy",
+    label: "Speech therapy session",
+    text: "Support for speech, language, and swallowing difficulties.",
+  },
+  {
+    title: "Home Health Aide",
+    category: "Support",
+    label: "Aide assisting a patient",
+    text: "Certified nursing assistants help with bathing and daily living.",
+  },
+  {
+    title: "Medical Social Work",
+    category: "Support",
+    label: "Social worker with family",
+    text: "Connecting patients and families to community resources.",
+  },
+  {
+    title: "Physician House Calls",
+    category: "Nursing",
+    label: "Physician visiting a home",
+    text: "In-home physician visits for patients who cannot travel.",
+  },
+  {
+    title: "Certified Wound Therapy",
+    category: "Specialty",
+    label: "Wound care supplies",
+    text: "Specialized wound management for complex and chronic wounds.",
+  },
+  {
+    title: "Infusion & Pain Management",
+    category: "Specialty",
+    label: "Infusion therapy setup",
+    text: "IV therapy and pain management delivered safely at home.",
+  },
 ];
 
-const POSTS = [
+/* Clinical programs — taken verbatim from the company's clinical deck. */
+const CLINICAL_PROGRAMS = [
+  "Total Joint Replacement",
+  "Hospital to Home",
+  "SNF to Home",
+  "Congestive Heart Failure",
+  "Post Acute Care Home Health",
+  "Steady Steps Fall Prevention",
+  "Bariatric Care",
+  "Wound Care",
+  "Diabetes",
+  "Cardiac",
+  "Chronic Edema",
+  "Orthopedic Rehab",
+];
+
+const TESTIMONIALS = [
   {
-    tag: "TIPS",
-    date: "August 5, 2019",
-    title: "How to Choose the Specialist in Massage",
-    label: "Doctor with family",
+    author: "Jeanne B.",
+    text: "My physical therapist was so helpful and kind, she always worked with the energy level I had. Her compassion was beyond excellent and her knowledge was measurable to her many years of experience.",
   },
   {
-    tag: "BEAUTY",
-    date: "August 5, 2019",
-    title: "Hospital Nursing Care: Some Observations",
-    label: "Nurses at a screen",
+    author: "Linda W.",
+    text: "I recommend my therapist, she is outstanding, who did an excellent job treating me after my surgery. When I saw back my surgeon, he was impressed by the progress I have made, thanks to her guidance and direction.",
   },
   {
-    tag: "TIPS",
-    date: "August 5, 2019",
-    title: "Boostrix for Vacination of Adults Against Diphteria",
-    label: "Child receiving care",
+    author: "Margaret P.",
+    text: "Everyone that came to my home were very respectful, kind, and caring. I would highly recommend Virginia HealthCare Services.",
+  },
+];
+
+const INSURANCE_GROUPS = [
+  {
+    group: "Medicare",
+    plans: [
+      "Medicare Traditional",
+      "Aetna Medicare / My Nexus Aetna",
+      "Anthem Medicare / My Nexus Anthem",
+      "UHC Medicare",
+      "Humana Medicare",
+      "Cigna Medicare",
+      "Virginia Premier Elite Medicare",
+      "Aetna Better Health Medicare",
+      "BC Medicare",
+    ],
+  },
+  {
+    group: "Medicaid",
+    plans: [
+      "Optima Health Medicaid",
+      "UHC Medicaid",
+      "VA Elite Premier Medicaid",
+      "Aetna Better Health Medicaid",
+      "Anthem HealthKeepers",
+    ],
+  },
+  {
+    group: "Commercial",
+    plans: [
+      "Aetna",
+      "Blue Cross Blue Shield",
+      "BC Federal",
+      "United Healthcare",
+      "Cigna",
+    ],
+  },
+  {
+    group: "Military",
+    plans: ["Tricare", "Humana Military"],
   },
 ];
 
 const OPEN_HOURS = [
-  ["Monday", "8.00 - 21.00"],
-  ["Tuesday", "8.00 - 21.00"],
-  ["Wednesday", "8.00 - 21.00"],
-  ["Thursday", "8.00 - 21.00"],
-  ["Friday", "8.00 - 21.00"],
-  ["Saturday/Sunday", "8.00 - 18.00"],
+  ["Monday", "9:00 - 17:00"],
+  ["Tuesday", "9:00 - 17:00"],
+  ["Wednesday", "9:00 - 17:00"],
+  ["Thursday", "9:00 - 17:00"],
+  ["Friday", "9:00 - 17:00"],
+  ["On-call nursing", "24 / 7"],
 ];
 
 /* -------------------------------------------------------------------------- */
 /*  Page                                                                      */
 /* -------------------------------------------------------------------------- */
 
-export default function FamilyDoctorPage() {
+export default function HomePage() {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const visibleGallery =
+  const visibleServices =
     activeFilter === "All"
-      ? GALLERY_ITEMS
-      : GALLERY_ITEMS.filter((item) => item.category === activeFilter);
+      ? SERVICE_GRID
+      : SERVICE_GRID.filter((item) => item.category === activeFilter);
 
   return (
     <div
@@ -406,21 +518,9 @@ export default function FamilyDoctorPage() {
       {/* ---------------------------------------------------------------- */}
       {/*  Header                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <header
-        className="sticky top-0 z-50"
-        style={{ background: DARK }}
-      >
-        <div className="mx-auto max-w-[1200px] px-6 h-[76px] flex items-center justify-between">
-          <button
-            aria-label="Open menu"
-            className="text-white/90 hover:text-white transition-colors"
-          >
-            <svg viewBox="0 0 24 24" className="w-6 h-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round">
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          </button>
-
-          <a href="#" className="flex items-center gap-3">
+      <header className="sticky top-0 z-50" style={{ background: DARK }}>
+        <div className="mx-auto max-w-[1200px] px-6 h-[76px] flex items-center justify-between gap-6">
+          <a href="/" className="flex items-center gap-3 shrink-0">
             <svg viewBox="0 0 40 40" className="w-9 h-9">
               <defs>
                 <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
@@ -428,10 +528,7 @@ export default function FamilyDoctorPage() {
                   <stop offset="100%" stopColor={BLUE} />
                 </linearGradient>
               </defs>
-              <path
-                d="M15 3h10v12h12v10H25v12H15V25H3V15h12V3Z"
-                fill="url(#logoGrad)"
-              />
+              <path d="M15 3h10v12h12v10H25v12H15V25H3V15h12V3Z" fill="url(#logoGrad)" />
               <path
                 d="M8 20h6l2-4 3 8 2-4h9"
                 fill="none"
@@ -442,11 +539,11 @@ export default function FamilyDoctorPage() {
               />
             </svg>
             <span className="leading-none">
-              <span className="block text-2xl font-extrabold text-white">
-                Medify
+              <span className="block text-lg font-extrabold text-white">
+                Virginia HealthCare
               </span>
-              <span className="block text-[11px] tracking-wide text-white/60">
-                Clinic of Future
+              <span className="block text-[11px] tracking-[0.18em] text-white/60 uppercase">
+                Services
               </span>
             </span>
           </a>
@@ -463,13 +560,20 @@ export default function FamilyDoctorPage() {
             ))}
           </nav>
 
-          <button
-            aria-label="Search"
-            className="text-white/90 hover:text-white transition-colors"
+          <a
+            href={PHONE_HREF}
+            className="hidden md:inline-block rounded-full px-5 py-2.5 text-sm font-extrabold text-white shrink-0"
+            style={{ background: BLUE }}
           >
-            <svg viewBox="0 0 24 24" className="w-5 h-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round">
-              <circle cx="11" cy="11" r="7" />
-              <path d="M20 20l-3.5-3.5" />
+            {PHONE_DISPLAY}
+          </a>
+
+          <button
+            aria-label="Open menu"
+            className="lg:hidden text-white/90 hover:text-white transition-colors"
+          >
+            <svg viewBox="0 0 24 24" className="w-6 h-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round">
+              <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           </button>
         </div>
@@ -485,34 +589,44 @@ export default function FamilyDoctorPage() {
         <div className="mx-auto max-w-[1200px] px-6 grid lg:grid-cols-2 items-center gap-8 min-h-[560px]">
           <div className="py-16 lg:py-24 relative z-10">
             <h1
-              className="text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.12]"
+              className="text-4xl md:text-5xl lg:text-[54px] font-extrabold leading-[1.12]"
               style={{ color: NAVY }}
             >
-              Hi! I`m <span style={{ color: TEAL }}>Dr.Paul May,</span>
+              Live Big. <span style={{ color: TEAL }}>Live Bold.</span>
               <br />
-              Family Therapist
+              Care That Comes Home.
             </h1>
 
             <p
-              className="mt-6 max-w-[430px] text-[15px] leading-[1.9]"
+              className="mt-6 max-w-[470px] text-[15px] leading-[1.9]"
               style={{ color: "#5b6b8c" }}
             >
-              Since the first days of operation of Medify, our team has been
-              focused on building a high-quality medical service.
+              In-home nursing and rehabilitation across Northern Virginia since
+              2005. Accredited by The Joint Commission and certified by Medicare
+              and Medicaid.
             </p>
 
-            <a
-              href="#"
-              className="inline-block mt-8 rounded-md px-7 py-3.5 text-sm font-extrabold text-white shadow-lg transition-transform hover:-translate-y-0.5"
-              style={{ background: BLUE }}
-            >
-              Book an Appoinment
-            </a>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="/contact"
+                className="inline-block rounded-md px-7 py-3.5 text-sm font-extrabold text-white shadow-lg transition-transform hover:-translate-y-0.5"
+                style={{ background: BLUE }}
+              >
+                Schedule an In-Home Assessment
+              </a>
+              <a
+                href={PHONE_HREF}
+                className="inline-block rounded-md border-2 px-7 py-3 text-sm font-extrabold transition-colors"
+                style={{ borderColor: BLUE, color: BLUE }}
+              >
+                Call {PHONE_DISPLAY}
+              </a>
+            </div>
           </div>
 
           <div className="relative h-[320px] lg:h-[560px]">
             <Placeholder
-              label="Dr. Paul May portrait"
+              label="Nurse with a patient at home"
               className="absolute inset-0"
               tone="grey"
             />
@@ -521,24 +635,22 @@ export default function FamilyDoctorPage() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  2. Benefits (teal band)                                          */}
+      {/*  2. Positioning band                                              */}
       {/* ---------------------------------------------------------------- */}
-      <section
-        className="relative pt-20 pb-40"
-        style={{ background: TEAL_GRADIENT }}
-      >
+      <section className="relative pt-20 pb-40" style={{ background: TEAL_GRADIENT }}>
         <div className="mx-auto max-w-[1200px] px-6">
-          <Eyebrow color="#ffffff">Benefits</Eyebrow>
+          <Eyebrow color="#ffffff">Why Families Choose Us</Eyebrow>
 
-          <h2 className="text-3xl md:text-[42px] font-extrabold text-white leading-[1.25] max-w-[760px]">
-            Qualified Therapist Consultation at Any Time at Any Place
+          <h2 className="text-3xl md:text-[42px] font-extrabold text-white leading-[1.25] max-w-[780px]">
+            Skilled Care at Home, Started Within 24 Hours of Referral
           </h2>
 
-          <p className="mt-8 max-w-[760px] text-[15px] leading-[2] text-white/95">
-            Family medicine is a principle of medical support where the general
-            practitioner is assigned to the family for many years.{" "}
+          <p className="mt-8 max-w-[780px] text-[15px] leading-[2] text-white/95">
+            Recovery happens faster in familiar surroundings. Our nurses,
+            therapists, and aides bring hospital-level skill into your home and
+            coordinate directly with your physician.{" "}
             <strong className="font-extrabold">
-              Family medicine is one of the most demanded fields.
+              Care begins within 24 hours of your referral.
             </strong>
           </p>
 
@@ -546,24 +658,24 @@ export default function FamilyDoctorPage() {
             className="mt-8 text-right text-3xl md:text-4xl text-white/95"
             style={{ fontFamily: "var(--font-signature), cursive" }}
           >
-            Paul May, therapist
+            Serving Northern Virginia since 2005
           </p>
         </div>
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  3. Three overlapping feature cards                               */}
+      {/*  3. Three lines of care                                           */}
       {/* ---------------------------------------------------------------- */}
       <section className="bg-[#f8f9fb] pb-24">
         <div className="mx-auto max-w-[1200px] px-6 -mt-32">
           <div className="grid md:grid-cols-2 gap-8 max-w-[840px] mx-auto">
-            {FEATURE_CARDS.slice(0, 2).map((card) => (
-              <FeatureCard key={card.title} {...card} />
+            {CARE_LINES.slice(0, 2).map((card) => (
+              <CareLineCard key={card.title} {...card} />
             ))}
           </div>
 
           <div className="mt-10 max-w-[400px] mx-auto">
-            <FeatureCard {...FEATURE_CARDS[2]} />
+            <CareLineCard {...CARE_LINES[2]} />
           </div>
         </div>
 
@@ -583,37 +695,40 @@ export default function FamilyDoctorPage() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  5. About me                                                      */}
+      {/*  5. About                                                         */}
       {/* ---------------------------------------------------------------- */}
       <section className="bg-white py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          <Eyebrow>About me</Eyebrow>
+          <Eyebrow>About Us</Eyebrow>
 
           <h2
-            className="text-3xl md:text-[40px] font-extrabold leading-[1.25] max-w-[520px]"
+            className="text-3xl md:text-[40px] font-extrabold leading-[1.25] max-w-[560px]"
             style={{ color: NAVY }}
           >
-            Professional Medical Care in Full Measure
+            Reliable, Competent, and Timely Home Health Care
           </h2>
 
           <div
-            className="mt-8 space-y-6 max-w-[760px] text-[15px] leading-[2]"
+            className="mt-8 space-y-6 max-w-[780px] text-[15px] leading-[2]"
             style={{ color: MUTED }}
           >
             <p>
-              For us, there are no minor aspects, because a quality result always
-              depends on trifles. Over the years of our activities, we have
-              gained the unique experience of organizing medical services for
-              citizens and foreign nationals.
+              Virginia HealthCare Services has provided in-home nursing and
+              rehabilitation across Northern Virginia since 2005. From our office
+              in Annandale, a team of more than one hundred clinicians and support
+              staff cares for patients throughout the region.
             </p>
             <p>
-              Private patients, international organizations and corporate
-              businesses feel safe and comfortable in establishing relationships.
+              We are accredited by The Joint Commission and certified by the
+              Centers for Medicare and Medicaid Services. Every patient receives a
+              personalized care plan built on a comprehensive assessment and
+              updated as recovery progresses, with our clinical team coordinating
+              closely with your physician.
             </p>
           </div>
 
           <a
-            href="#"
+            href="/about"
             className="mt-8 inline-flex items-center gap-2 text-sm font-extrabold transition-colors hover:opacity-80"
             style={{ color: TEAL }}
           >
@@ -624,7 +739,7 @@ export default function FamilyDoctorPage() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  6. Advanced services (teal band)                                 */}
+      {/*  6. What we offer                                                 */}
       {/* ---------------------------------------------------------------- */}
       <section
         className="relative overflow-hidden pt-20 pb-24"
@@ -635,72 +750,102 @@ export default function FamilyDoctorPage() {
 
         <div className="mx-auto max-w-[1200px] px-6 text-center">
           <Eyebrow color="#ffffff" center bothSides>
-            Advanced Services
+            What We Provide
           </Eyebrow>
 
           <h2 className="text-3xl md:text-[42px] font-extrabold text-white">
-            What Can I Offer for You
+            Care Built Around Your Recovery
           </h2>
 
-          <p className="mt-6 mx-auto max-w-[640px] text-[15px] leading-[1.9] text-white/90">
-            We have introduced the principle of family medicine, which means that
-            the family practitioner will handle the majority of medical requests,
-            with a specialists involved only if necessary.
+          <p className="mt-6 mx-auto max-w-[660px] text-[15px] leading-[1.9] text-white/90">
+            Our clinicians work under your physician&apos;s direction to help you
+            or your loved one reach their maximum potential at home.
           </p>
 
           <div className="mt-14 grid md:grid-cols-2 gap-8 max-w-[760px] mx-auto">
-            {SERVICE_CARDS.slice(0, 2).map(({ title, Icon }) => (
-              <ServiceCard key={title} title={title} Icon={Icon} />
+            {SERVICE_CARDS.slice(0, 2).map((card) => (
+              <ServiceCard key={card.title} {...card} />
             ))}
           </div>
 
           <div className="mt-8 max-w-[364px] mx-auto">
-            <ServiceCard
-              title={SERVICE_CARDS[2].title}
-              Icon={SERVICE_CARDS[2].Icon}
-            />
+            <ServiceCard {...SERVICE_CARDS[2]} />
           </div>
         </div>
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  7. Full-width image band                                         */}
+      {/*  7. Clinical programs band                                        */}
       {/* ---------------------------------------------------------------- */}
-      <section>
+      <section className="relative">
         <Placeholder
-          label="Doctor with a child"
+          label="Care team visiting a patient"
           className="w-full h-[280px] md:h-[420px]"
           tone="cool"
         />
       </section>
 
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-[1200px] px-6 text-center">
+          <Eyebrow center bothSides>
+            Clinical Programs
+          </Eyebrow>
+          <h2
+            className="text-3xl md:text-[40px] font-extrabold"
+            style={{ color: NAVY }}
+          >
+            Programs for Complex Recovery
+          </h2>
+          <p
+            className="mt-5 mx-auto max-w-[680px] text-[15px] leading-[1.9]"
+            style={{ color: MUTED }}
+          >
+            Structured pathways for patients transitioning home from a hospital or
+            skilled nursing facility. Program details and pathways are available
+            on request.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {CLINICAL_PROGRAMS.map((program) => (
+              <span
+                key={program}
+                className="rounded-full border px-5 py-2 text-sm font-bold"
+                style={{ borderColor: "#dbe6f5", color: NAVY }}
+              >
+                {program}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ---------------------------------------------------------------- */}
-      {/*  8. Health tips gallery                                           */}
+      {/*  8. Services grid with filters                                    */}
       {/* ---------------------------------------------------------------- */}
-      <section className="bg-white py-24">
+      <section className="bg-[#f8f9fb] py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <Eyebrow>Health Tips</Eyebrow>
+              <Eyebrow>Our Services</Eyebrow>
               <h2
                 className="text-3xl md:text-[40px] font-extrabold"
                 style={{ color: NAVY }}
               >
-                Safety &amp; Comfortable
+                Everything We Bring Home
               </h2>
             </div>
 
             <a
-              href="#"
+              href="/services"
               className="rounded-md px-7 py-3 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
               style={{ background: BLUE }}
             >
-              View More
+              View All Services
             </a>
           </div>
 
           <div className="mt-10 flex flex-wrap gap-2">
-            {GALLERY_FILTERS.map((filter) => {
+            {SERVICE_FILTERS.map((filter) => {
               const active = filter === activeFilter;
               return (
                 <button
@@ -719,114 +864,24 @@ export default function FamilyDoctorPage() {
           </div>
 
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {visibleGallery.map((item) => (
-              <div
-                key={item.label}
-                className="group relative rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(16,49,120,0.08)]"
+            {visibleServices.map((item) => (
+              <article
+                key={item.title}
+                className="group rounded-xl overflow-hidden bg-white shadow-[0_10px_30px_rgba(16,49,120,0.08)]"
               >
                 <Placeholder
                   label={item.label}
-                  className="h-[230px] transition-transform duration-500 group-hover:scale-105"
+                  className="h-[190px] transition-transform duration-500 group-hover:scale-105"
                   tone="cool"
                 />
-              </div>
-            ))}
-          </div>
-
-          {visibleGallery.length === 0 && (
-            <p className="mt-10 text-center text-sm" style={{ color: MUTED }}>
-              Nothing in this category yet.
-            </p>
-          )}
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/*  9. Emergency call band                                           */}
-      {/* ---------------------------------------------------------------- */}
-      <section
-        className="relative overflow-hidden py-16 text-center"
-        style={{ background: TEAL_GRADIENT }}
-      >
-        <div className="absolute inset-0 flex items-center justify-center opacity-15">
-          <CaduceusIcon color="#ffffff" />
-        </div>
-
-        <div className="relative mx-auto max-w-[1200px] px-6">
-          <p className="text-lg md:text-2xl font-bold text-white">
-            Need a Doctor for Check-up? Call for an Emergency Service!
-          </p>
-          <a
-            href="tel:+812345678912"
-            className="mt-4 block text-3xl md:text-[42px] font-extrabold text-white hover:opacity-90 transition-opacity"
-          >
-            +8 (123) 456 789 12
-          </a>
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/*  10. Latest news                                                  */}
-      {/* ---------------------------------------------------------------- */}
-      <section className="bg-[#f8f9fb] py-24">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <div className="text-center">
-            <Eyebrow center bothSides>
-              Our Media
-            </Eyebrow>
-            <h2
-              className="text-3xl md:text-[42px] font-extrabold"
-              style={{ color: NAVY }}
-            >
-              Read Latest News
-            </h2>
-            <p
-              className="mt-5 mx-auto max-w-[640px] text-[15px] leading-[1.9]"
-              style={{ color: MUTED }}
-            >
-              We have introduced the principle of family medicine, which means
-              that the family practitioner will handle the majority of medical
-              requests, with a specialists involved only if necessary.
-            </p>
-          </div>
-
-          <div className="mt-14 grid md:grid-cols-3 gap-8">
-            {POSTS.map((post) => (
-              <article key={post.title}>
-                <div className="relative rounded-xl overflow-hidden">
-                  <Placeholder label={post.label} className="h-[210px]" tone="cool" />
-                  <span
-                    className="absolute left-4 top-4 rounded bg-white px-3 py-1 text-[11px] font-extrabold tracking-wide"
-                    style={{ color: BLUE }}
-                  >
-                    {post.tag}
-                  </span>
+                <div className="p-6">
+                  <h3 className="text-lg font-extrabold" style={{ color: NAVY }}>
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[14px] leading-[1.8]" style={{ color: MUTED }}>
+                    {item.text}
+                  </p>
                 </div>
-
-                <p
-                  className="mt-5 text-[11px] font-bold uppercase tracking-[0.12em]"
-                  style={{ color: MUTED }}
-                >
-                  {post.date}
-                </p>
-
-                <h3
-                  className="mt-2 text-xl font-extrabold leading-snug"
-                  style={{ color: NAVY }}
-                >
-                  <a href="#" className="hover:opacity-80 transition-opacity">
-                    {post.title}
-                  </a>
-                </h3>
-
-                <a
-                  href="#"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold"
-                  style={{ color: TEAL }}
-                >
-                  Read More
-                  <ArrowRight />
-                </a>
               </article>
             ))}
           </div>
@@ -834,40 +889,164 @@ export default function FamilyDoctorPage() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/*  11. Footer                                                       */}
+      {/*  9. Call band                                                     */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        className="relative overflow-hidden py-16 text-center"
+        style={{ background: TEAL_GRADIENT }}
+      >
+        <div className="relative mx-auto max-w-[1200px] px-6">
+          <p className="text-lg md:text-2xl font-bold text-white">
+            Ready to start care? Speak with our team today.
+          </p>
+          <a
+            href={PHONE_HREF}
+            className="mt-4 block text-3xl md:text-[42px] font-extrabold text-white hover:opacity-90 transition-opacity"
+          >
+            {PHONE_DISPLAY}
+          </a>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/*  10. Testimonials                                                 */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="bg-white py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="text-center">
+            <Eyebrow center bothSides>
+              Testimonials
+            </Eyebrow>
+            <h2
+              className="text-3xl md:text-[42px] font-extrabold"
+              style={{ color: NAVY }}
+            >
+              What Our Patients Say
+            </h2>
+          </div>
+
+          <div className="mt-14 grid md:grid-cols-3 gap-8">
+            {TESTIMONIALS.map((item) => (
+              <figure
+                key={item.author}
+                className="rounded-xl bg-[#f8f9fb] p-8 shadow-[0_10px_30px_rgba(16,49,120,0.06)]"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-8 h-8 mb-4"
+                  fill={TEAL}
+                  opacity="0.35"
+                >
+                  <path d="M10 6v6a6 6 0 0 1-6 6V15a3 3 0 0 0 3-3H4V6h6Zm10 0v6a6 6 0 0 1-6 6V15a3 3 0 0 0 3-3h-3V6h6Z" />
+                </svg>
+
+                <blockquote
+                  className="text-[15px] leading-[1.9]"
+                  style={{ color: MUTED }}
+                >
+                  {item.text}
+                </blockquote>
+
+                <figcaption
+                  className="mt-6 text-sm font-extrabold"
+                  style={{ color: NAVY }}
+                >
+                  {item.author}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/*  11. Insurance                                                    */}
+      {/* ---------------------------------------------------------------- */}
+      <section id="insurance" className="bg-[#f8f9fb] py-24 scroll-mt-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="text-center">
+            <Eyebrow center bothSides>
+              Insurance
+            </Eyebrow>
+            <h2
+              className="text-3xl md:text-[42px] font-extrabold"
+              style={{ color: NAVY }}
+            >
+              Health Plans We Accept
+            </h2>
+            <p
+              className="mt-5 mx-auto max-w-[640px] text-[15px] leading-[1.9]"
+              style={{ color: MUTED }}
+            >
+              Coverage varies by plan and by the services ordered. Call us and we
+              will verify your benefits before care begins.
+            </p>
+          </div>
+
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {INSURANCE_GROUPS.map(({ group, plans }) => (
+              <div
+                key={group}
+                className="rounded-xl bg-white p-7 shadow-[0_10px_30px_rgba(16,49,120,0.06)]"
+              >
+                <h3
+                  className="text-lg font-extrabold pb-3 mb-4 border-b"
+                  style={{ color: NAVY, borderColor: "#e8eef7" }}
+                >
+                  {group}
+                </h3>
+                <ul className="space-y-2.5">
+                  {plans.map((plan) => (
+                    <li
+                      key={plan}
+                      className="flex gap-2 text-[14px] leading-[1.6]"
+                      style={{ color: MUTED }}
+                    >
+                      <span style={{ color: TEAL }}>&bull;</span>
+                      {plan}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/*  12. Footer                                                       */}
       {/* ---------------------------------------------------------------- */}
       <footer className="bg-white pt-20">
         <div className="mx-auto max-w-[1200px] px-6 grid md:grid-cols-2 gap-14">
           <div>
-            <h3
-              className="text-lg font-extrabold"
-              style={{ color: NAVY }}
-            >
+            <h3 className="text-lg font-extrabold" style={{ color: NAVY }}>
               Our Contacts
             </h3>
 
             <ul className="mt-6 space-y-5 text-[14px]" style={{ color: MUTED }}>
               <ContactRow icon="pin">
-                27 Division St, New York,
+                7010 Little River Turnpike, Suite 400
                 <br />
-                NY 10002, USA
+                Annandale, VA 22003
               </ContactRow>
               <ContactRow icon="phone">
-                Call Us 24/7
+                Call Us
                 <br />
-                +8 (123) 456 789 12
+                <a href={PHONE_HREF} className="hover:underline">
+                  {PHONE_DISPLAY}
+                </a>
               </ContactRow>
               <ContactRow icon="clock">
-                Mon - Fri: 8.00 - 20.00
+                Serving Northern Virginia
                 <br />
-                St - Sun: 9.00 - 16.00
+                and the DC Metro Area
               </ContactRow>
             </ul>
           </div>
 
           <div>
             <h3 className="text-lg font-extrabold" style={{ color: NAVY }}>
-              Open Hours
+              Office Hours
             </h3>
 
             <ul className="mt-6 space-y-3">
@@ -883,18 +1062,20 @@ export default function FamilyDoctorPage() {
         </div>
 
         <div className="mt-16 border-t border-gray-100">
-          <div className="mx-auto max-w-[1200px] px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px]" style={{ color: MUTED }}>
+          <div
+            className="mx-auto max-w-[1200px] px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px]"
+            style={{ color: MUTED }}
+          >
             <p>
-              <a href="#" className="hover:underline">Terms of use</a>
+              <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
               {" | "}
-              <a href="#" className="hover:underline">Privacy Environmental Policy</a>
+              <a href="/terms-of-service" className="hover:underline">Terms of Service</a>
+              {" | "}
+              <a href="/disclaimer" className="hover:underline">Disclaimer</a>
             </p>
             <p>
-              Copyright © 2024 Medify by{" "}
-              <a href="#" className="underline" style={{ color: BLUE }}>
-                WebGeniusLab
-              </a>
-              . All Rights Reserved.
+              Copyright © {new Date().getFullYear()} Virginia HealthCare
+              Services. All Rights Reserved.
             </p>
           </div>
         </div>
@@ -907,11 +1088,23 @@ export default function FamilyDoctorPage() {
 /*  Sub-components                                                            */
 /* -------------------------------------------------------------------------- */
 
-function FeatureCard({ title, label }: { title: string; label: string }) {
+function CareLineCard({
+  title,
+  label,
+  href,
+}: {
+  title: string;
+  label: string;
+  href: string;
+}) {
   return (
-    <div className="relative pb-12">
+    <a href={href} className="relative block pb-12 group">
       <div className="rounded-xl overflow-hidden shadow-[0_16px_40px_rgba(16,49,120,0.12)]">
-        <Placeholder label={label} className="h-[220px]" tone="cool" />
+        <Placeholder
+          label={label}
+          className="h-[220px] transition-transform duration-500 group-hover:scale-105"
+          tone="cool"
+        />
       </div>
 
       <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[78%] rounded-lg bg-white px-6 py-5 text-center shadow-[0_14px_34px_rgba(16,49,120,0.14)]">
@@ -919,15 +1112,17 @@ function FeatureCard({ title, label }: { title: string; label: string }) {
           {title}
         </span>
       </div>
-    </div>
+    </a>
   );
 }
 
 function ServiceCard({
   title,
+  body,
   Icon,
 }: {
   title: string;
+  body: string;
   Icon: ({ color }: { color: string }) => React.JSX.Element;
 }) {
   return (
@@ -939,7 +1134,7 @@ function ServiceCard({
         {title}
       </h3>
       <p className="mt-4 text-[14px] leading-[1.9]" style={{ color: MUTED }}>
-        {SERVICE_BODY}
+        {body}
       </p>
     </div>
   );
@@ -992,3 +1187,6 @@ function ContactRow({
     </li>
   );
 }
+
+/* Unused icon kept for future service cards. */
+export { HomeHeartIcon, HandsIcon };
