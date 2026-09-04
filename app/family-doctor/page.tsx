@@ -12,7 +12,6 @@ const ORANGE = "#ff9e21";
 const BLUE = "#2ea6f7";
 const TEAL = "#4ec8d8";
 const MUTED = "#93919d";
-const DARK = "#313131";
 
 const TEAL_GRADIENT = `linear-gradient(105deg, ${TEAL} 0%, ${BLUE} 100%)`;
 
@@ -522,34 +521,17 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- */}
       {/*  Header                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <header className="sticky top-0 z-50" style={{ background: DARK }}>
-        <div className="mx-auto max-w-[1200px] px-6 h-[76px] flex items-center justify-between gap-6">
-          <a href="/" className="flex items-center gap-3 shrink-0">
-            <svg viewBox="0 0 40 40" className="w-9 h-9">
-              <defs>
-                <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor={TEAL} />
-                  <stop offset="100%" stopColor={BLUE} />
-                </linearGradient>
-              </defs>
-              <path d="M15 3h10v12h12v10H25v12H15V25H3V15h12V3Z" fill="url(#logoGrad)" />
-              <path
-                d="M8 20h6l2-4 3 8 2-4h9"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="leading-none">
-              <span className="block text-lg font-extrabold text-white">
-                Virginia HealthCare
-              </span>
-              <span className="block text-[11px] tracking-[0.18em] text-white/60 uppercase">
-                Services
-              </span>
-            </span>
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-[0_2px_12px_rgba(16,49,120,0.06)]">
+        <div className="mx-auto max-w-[1200px] px-6 h-[84px] flex items-center justify-between gap-6">
+          <a href="/" className="flex items-center shrink-0">
+            <Image
+              src="/images/logo.svg"
+              alt="Virginia HealthCare Services"
+              width={791}
+              height={153}
+              priority
+              className="h-9 md:h-11 w-auto"
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-7">
@@ -557,7 +539,8 @@ export default function HomePage() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-bold text-white/85 hover:text-white transition-colors"
+                className="text-sm font-bold transition-opacity hover:opacity-70"
+                style={{ color: NAVY }}
               >
                 {link.label}
               </a>
@@ -574,7 +557,8 @@ export default function HomePage() {
 
           <button
             aria-label="Open menu"
-            className="lg:hidden text-white/90 hover:text-white transition-colors"
+            className="lg:hidden transition-opacity hover:opacity-70"
+            style={{ color: NAVY }}
           >
             <svg viewBox="0 0 24 24" className="w-6 h-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round">
               <path d="M4 7h16M4 12h16M4 17h16" />
