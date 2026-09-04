@@ -4,9 +4,9 @@ import { usePathname } from "next/navigation";
 
 /**
  * Hides the global site Header/Footer on standalone theme pages
- * (e.g. /family-doctor) which ship their own header and footer.
+ * (they ship their own header and footer).
  */
-const STANDALONE_ROUTES = ["/family-doctor"];
+const STANDALONE_ROUTES = ["/family-doctor", "/services"];
 
 export default function ChromeGate({
   children,
