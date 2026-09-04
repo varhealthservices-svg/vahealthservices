@@ -19,53 +19,6 @@ const PHONE_DISPLAY = "(703) 333-5288";
 const PHONE_HREF = "tel:+17033335288";
 
 /* -------------------------------------------------------------------------- */
-/*  Placeholder image block — swap for <Image /> once real assets are added    */
-/* -------------------------------------------------------------------------- */
-
-function Placeholder({
-  label,
-  className = "",
-  tone = "cool",
-}: {
-  label: string;
-  className?: string;
-  tone?: "cool" | "warm" | "grey";
-}) {
-  const tones: Record<string, string> = {
-    cool: "linear-gradient(135deg,#dbeafe 0%,#bfdbfe 55%,#a5d8ef 100%)",
-    warm: "linear-gradient(135deg,#fef3e2 0%,#fde4c4 100%)",
-    grey: "linear-gradient(135deg,#eef1f5 0%,#dde3ea 100%)",
-  };
-
-  return (
-    <div
-      className={`relative overflow-hidden flex items-center justify-center ${className}`}
-      style={{ background: tones[tone] }}
-      role="img"
-      aria-label={`${label} (placeholder)`}
-    >
-      <svg
-        viewBox="0 0 24 24"
-        className="w-10 h-10 opacity-30"
-        fill="none"
-        stroke={NAVY}
-        strokeWidth="1.5"
-      >
-        <rect x="3" y="4" width="18" height="16" rx="2" />
-        <circle cx="8.5" cy="9.5" r="1.5" />
-        <path d="M21 16l-5-5-5 5-3-3-5 5" />
-      </svg>
-      <span
-        className="absolute bottom-2 right-3 text-[10px] tracking-wide uppercase opacity-40"
-        style={{ color: NAVY }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /*  Section eyebrow                                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -367,55 +320,64 @@ const SERVICE_GRID = [
   {
     title: "Skilled Nursing",
     category: "Nursing",
-    label: "Nurse with patient",
+    src: "/images/home/nursing.webp",
+    alt: "A nurse reviewing a medication list with an older woman at her kitchen table",
     text: "Disease education, medication management, wound and ostomy care.",
   },
   {
     title: "Physical Therapy",
     category: "Therapy",
-    label: "Physical therapy session",
+    src: "/images/home/physical-therapy.webp",
+    alt: "A physical therapist steadying an older man during a balance exercise at home",
     text: "Restoring strength, balance, and mobility after surgery or illness.",
   },
   {
     title: "Occupational Therapy",
     category: "Therapy",
-    label: "Occupational therapy at home",
+    src: "/images/home/occupational-therapy.webp",
+    alt: "An occupational therapist showing a patient how to use a bathroom grab bar",
     text: "Regaining independence in daily activities within the home.",
   },
   {
     title: "Speech Therapy",
     category: "Therapy",
-    label: "Speech therapy session",
+    src: "/images/home/speech-therapy.webp",
+    alt: "A speech therapist working through picture cards with an older man at a table",
     text: "Support for speech, language, and swallowing difficulties.",
   },
   {
     title: "Home Health Aide",
     category: "Support",
-    label: "Aide assisting a patient",
+    src: "/images/home/home-health-aide.webp",
+    alt: "An aide supporting an elderly woman as she walks with a rolling walker",
     text: "Certified nursing assistants help with bathing and daily living.",
   },
   {
     title: "Medical Social Work",
     category: "Support",
-    label: "Social worker with family",
+    src: "/images/home/social-work.webp",
+    alt: "A medical social worker talking with a patient and his daughter at home",
     text: "Connecting patients and families to community resources.",
   },
   {
     title: "Physician House Calls",
     category: "Nursing",
-    label: "Physician visiting a home",
+    src: "/images/home/house-calls.webp",
+    alt: "A physician listening to an older man's chest during a home visit",
     text: "In-home physician visits for patients who cannot travel.",
   },
   {
     title: "Certified Wound Therapy",
     category: "Specialty",
-    label: "Wound care supplies",
+    src: "/images/home/wound-care.webp",
+    alt: "A nurse applying a clean dressing to a patient's lower leg at home",
     text: "Specialized wound management for complex and chronic wounds.",
   },
   {
     title: "Infusion & Pain Management",
     category: "Specialty",
-    label: "Infusion therapy setup",
+    src: "/images/home/infusion.webp",
+    alt: "A nurse adjusting an infusion line beside an armchair in a sunlit living room",
     text: "IV therapy and pain management delivered safely at home.",
   },
 ];
@@ -863,10 +825,13 @@ export default function HomePage() {
                 key={item.title}
                 className="group rounded-xl overflow-hidden bg-white shadow-[0_10px_30px_rgba(16,49,120,0.08)]"
               >
-                <Placeholder
-                  label={item.label}
-                  className="h-[190px] transition-transform duration-500 group-hover:scale-105"
-                  tone="cool"
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={800}
+                  height={480}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                  className="h-[190px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="p-6">
                   <h3 className="text-lg font-extrabold" style={{ color: NAVY }}>
