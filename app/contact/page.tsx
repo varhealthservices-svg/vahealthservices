@@ -1,5 +1,16 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
+import {
+  BLUE,
+  MUTED,
+  NAVY,
+  ORANGE,
+  TEAL_GRADIENT,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+} from "../components/theme";
 
 export const metadata: Metadata = {
   title: "Contact Us | Virginia HealthCare Services",
@@ -11,34 +22,10 @@ export const metadata: Metadata = {
 /*  Theme tokens                                                              */
 /* -------------------------------------------------------------------------- */
 
-const NAVY = "#0a3380";
-const ORANGE = "#ff9e21";
-const BLUE = "#2ea6f7";
-const TEAL = "#4ec8d8";
-const MUTED = "#93919d";
 
-const TEAL_GRADIENT = `linear-gradient(105deg, ${TEAL} 0%, ${BLUE} 100%)`;
 
-const PHONE_DISPLAY = "(703) 333-5288";
-const PHONE_HREF = "tel:+17033335288";
 
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Insurance", href: "/#insurance" },
-  { label: "About", href: "/about" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
-];
 
-const OPEN_HOURS: [string, string][] = [
-  ["Monday", "9:00 - 17:00"],
-  ["Tuesday", "9:00 - 17:00"],
-  ["Wednesday", "9:00 - 17:00"],
-  ["Thursday", "9:00 - 17:00"],
-  ["Friday", "9:00 - 17:00"],
-  ["On-call nursing", "24 / 7"],
-];
 
 /* -------------------------------------------------------------------------- */
 /*  Shared bits                                                               */
@@ -88,41 +75,7 @@ export default function ContactPage() {
       {/* ---------------------------------------------------------------- */}
       {/*  Header                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-[0_2px_12px_rgba(16,49,120,0.06)]">
-        <div className="mx-auto max-w-[1200px] px-6 h-[84px] flex items-center justify-between gap-6">
-          <a href="/" className="flex items-center shrink-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/logo.svg"
-              alt="Virginia HealthCare Services"
-              width={791}
-              height={153}
-              className="h-9 md:h-11 w-auto"
-            />
-          </a>
-
-          <nav className="hidden lg:flex items-center gap-7">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-bold transition-opacity hover:opacity-70"
-                style={{ color: NAVY }}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <a
-            href={PHONE_HREF}
-            className="hidden md:inline-block rounded-full px-5 py-2.5 text-sm font-extrabold text-white shrink-0"
-            style={{ background: BLUE }}
-          >
-            {PHONE_DISPLAY}
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* ---------------------------------------------------------------- */}
       {/*  1. Page banner                                                   */}
@@ -267,70 +220,7 @@ export default function ContactPage() {
       {/* ---------------------------------------------------------------- */}
       {/*  4. Footer                                                        */}
       {/* ---------------------------------------------------------------- */}
-      <footer className="bg-white pt-20">
-        <div className="mx-auto max-w-[1200px] px-6 grid md:grid-cols-2 gap-14">
-          <div>
-            <h3 className="text-lg font-extrabold" style={{ color: NAVY }}>
-              Our Contacts
-            </h3>
-
-            <ul className="mt-6 space-y-5 text-[14px]" style={{ color: MUTED }}>
-              <ContactRow icon="pin">
-                7010 Little River Turnpike, Suite 400
-                <br />
-                Annandale, VA 22003
-              </ContactRow>
-              <ContactRow icon="phone">
-                Call Us
-                <br />
-                <a href={PHONE_HREF} className="hover:underline">
-                  {PHONE_DISPLAY}
-                </a>
-              </ContactRow>
-              <ContactRow icon="clock">
-                Serving Northern Virginia
-                <br />
-                and the DC Metro Area
-              </ContactRow>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-extrabold" style={{ color: NAVY }}>
-              Office Hours
-            </h3>
-
-            <ul className="mt-6 space-y-3">
-              {OPEN_HOURS.map(([day, hours]) => (
-                <li key={day} className="flex items-center gap-3 text-[14px]">
-                  <span style={{ color: MUTED }}>{day}</span>
-                  <span className="flex-1 border-b border-dotted border-gray-300" />
-                  <span style={{ color: BLUE }}>{hours}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-16 border-t border-gray-100">
-          <div
-            className="mx-auto max-w-[1200px] px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px]"
-            style={{ color: MUTED }}
-          >
-            <p>
-              <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
-              {" | "}
-              <a href="/terms-of-service" className="hover:underline">Terms of Service</a>
-              {" | "}
-              <a href="/disclaimer" className="hover:underline">Disclaimer</a>
-            </p>
-            <p>
-              Copyright © {new Date().getFullYear()} Virginia HealthCare
-              Services. All Rights Reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
@@ -409,32 +299,3 @@ function DetailRow({
   );
 }
 
-function ContactRow({
-  icon,
-  children,
-}: {
-  icon: keyof typeof ICON_PATHS;
-  children: React.ReactNode;
-}) {
-  return (
-    <li className="flex gap-4">
-      <span
-        className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-        style={{ background: "rgba(255,158,33,0.14)" }}
-      >
-        <svg
-          viewBox="0 0 24 24"
-          className="w-4 h-4"
-          fill="none"
-          stroke={ORANGE}
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          {ICON_PATHS[icon]}
-        </svg>
-      </span>
-      <span className="leading-[1.7]">{children}</span>
-    </li>
-  );
-}
