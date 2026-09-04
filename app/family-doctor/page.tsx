@@ -492,6 +492,7 @@ export default function HomePage() {
               width={791}
               height={153}
               priority
+              unoptimized
               className="h-9 md:h-11 w-auto"
             />
           </a>
@@ -621,14 +622,10 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- */}
       <section className="bg-[#f8f9fb] pb-24">
         <div className="mx-auto max-w-[1200px] px-6 -mt-32">
-          <div className="grid md:grid-cols-2 gap-8 max-w-[840px] mx-auto">
-            {CARE_LINES.slice(0, 2).map((card) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {CARE_LINES.map((card) => (
               <CareLineCard key={card.title} {...card} />
             ))}
-          </div>
-
-          <div className="mt-10 max-w-[400px] mx-auto">
-            <CareLineCard {...CARE_LINES[2]} />
           </div>
         </div>
 
@@ -715,14 +712,10 @@ export default function HomePage() {
             or your loved one reach their maximum potential at home.
           </p>
 
-          <div className="mt-14 grid md:grid-cols-2 gap-8 max-w-[760px] mx-auto">
-            {SERVICE_CARDS.slice(0, 2).map((card) => (
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+            {SERVICE_CARDS.map((card) => (
               <ServiceCard key={card.title} {...card} />
             ))}
-          </div>
-
-          <div className="mt-8 max-w-[364px] mx-auto">
-            <ServiceCard {...SERVICE_CARDS[2]} />
           </div>
         </div>
       </section>
@@ -1090,7 +1083,7 @@ function ServiceCard({
   Icon: ({ color }: { color: string }) => React.JSX.Element;
 }) {
   return (
-    <div className="rounded-xl bg-white px-8 py-10 text-center shadow-[0_18px_44px_rgba(16,49,120,0.14)]">
+    <div className="h-full rounded-xl bg-white px-8 py-10 text-center shadow-[0_18px_44px_rgba(16,49,120,0.14)]">
       <div className="flex justify-center">
         <Icon color={BLUE} />
       </div>
