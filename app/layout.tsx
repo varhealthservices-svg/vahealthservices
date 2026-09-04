@@ -1,13 +1,26 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Lato, Nunito, Sacramento } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ChromeGate from "./components/ChromeGate";
 
 const lato = Lato({
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
   variable: "--font-lato",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
+  variable: "--font-nunito",
+});
+
+const sacramento = Sacramento({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-signature",
 });
 
 export const metadata: Metadata = {
@@ -19,11 +32,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${lato.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${lato.variable} ${nunito.variable} ${sacramento.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col font-sans text-gray-800">
-        <Header />
+        <ChromeGate>
+          <Header />
+        </ChromeGate>
         <main className="flex-1">{children}</main>
-        <Footer />
+        <ChromeGate>
+          <Footer />
+        </ChromeGate>
       </body>
     </html>
   );
