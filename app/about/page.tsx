@@ -249,7 +249,7 @@ const TEAM = [
 const FEATURES = [
   {
     title: "Medicare Certified",
-    body: "One of the leading Medicare certified home health providers in Northern Virginia, with three locations across the Northern Virginia and DC metropolitan area.",
+    body: "One of the leading Medicare certified home health providers in Northern Virginia, with three locations across Northern Virginia.",
   },
   {
     title: "Professional Staff",
@@ -581,4 +581,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
