@@ -81,9 +81,9 @@ export default function SiteFooter() {
               </a>
             </ContactRow>
             <ContactRow icon="clock">
-              Serving Northern Virginia
+              Serving
               <br />
-              and the DC Metro Area
+              Northern Virginia
             </ContactRow>
           </ul>
         </div>
