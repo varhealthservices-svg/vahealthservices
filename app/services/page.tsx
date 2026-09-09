@@ -10,6 +10,7 @@ import {
   ORANGE,
   TEAL,
   TEAL_GRADIENT,
+  GREEN,
   PHONE_DISPLAY,
   PHONE_HREF,
 } from "../components/theme";
@@ -232,21 +233,8 @@ const CARE_LINES = [
     alt: "A home health nurse checking an older man's blood pressure in his living room",
     body: "Skilled nursing, physical, occupational, and speech therapy, home health aide services, and medical social work — all delivered in your own home under your physician's direction. We specialize in wound care, IV care, post-surgical care, joint replacements, diabetic management, and COPD and CHF management.",
   },
-  {
-    id: "palliative",
-    title: "Palliative Care",
-    src: "/images/home/palliative.webp",
-    alt: "A caregiver holding an elderly patient's hand over a soft blanket",
-    body: "Relief from the symptoms and stress of a serious illness, provided alongside curative treatment. Our team focuses on comfort, symptom management, and support for both the patient and the family at any stage of illness.",
-  },
-  {
-    id: "hospice",
-    title: "Hospice",
-    src: "/images/home/hospice.webp",
-    alt: "A quiet sunlit bedroom with an armchair and fresh flowers beside the bed",
-    body: "Compassionate care in the final stages of life, with nurses, aides, social workers, and chaplains supporting the patient and their loved ones at home. Care is centred on dignity, comfort, and family support.",
-  },
 ];
+
 
 /* -------------------------------------------------------------------------- */
 /*  Page                                                                      */
@@ -315,7 +303,7 @@ export default function ServicesPage() {
             style={{ color: MUTED }}
           >
             A full home health team working under your physician&apos;s
-            direction, serving Northern Virginia and the DC metro area.
+            direction, serving Northern Virginia.
           </p>
 
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-14">
@@ -379,7 +367,7 @@ export default function ServicesPage() {
                 <a
                   href="/contact"
                   className="mt-7 inline-block rounded-md px-7 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-0.5"
-                  style={{ background: BLUE }}
+                  style={{ background: GREEN }}
                 >
                   Request a Referral
                 </a>
@@ -508,4 +496,3 @@ export default function ServicesPage() {
     </div>
   );
 }
-
