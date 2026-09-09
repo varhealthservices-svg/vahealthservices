@@ -159,9 +159,7 @@ export default function ContactPage() {
               </DetailRow>
 
               <DetailRow icon="area" label="Service Area">
-                Northern Virginia and the
-                <br />
-                DC Metro Area
+                Northern Virginia
               </DetailRow>
             </ul>
           </div>
@@ -298,4 +296,3 @@ function DetailRow({
     </li>
   );
 }
-
