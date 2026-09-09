@@ -920,20 +920,13 @@ function AccreditationCard() {
           alt="The Joint Commission National Quality Approval seal"
           width={435}
           height={423}
-          className="h-[150px] w-auto"
+          className="h-[165px] w-auto"
         />
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[86%] rounded-lg bg-white px-6 py-5 text-center shadow-[0_14px_34px_rgba(16,49,120,0.14)]">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[80%] rounded-lg bg-white px-6 py-5 text-center shadow-[0_14px_34px_rgba(16,49,120,0.14)]">
         <span className="block text-lg font-extrabold" style={{ color: NAVY }}>
           Accredited by The Joint Commission
-        </span>
-        <span
-          className="mt-1.5 block text-[13px] leading-[1.6]"
-          style={{ color: MUTED }}
-        >
-          Independently reviewed against national standards for quality and
-          patient safety, and certified by Medicare and Medicaid.
         </span>
       </div>
     </div>
