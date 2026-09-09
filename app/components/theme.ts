@@ -7,6 +7,10 @@ export const NAVY = "#0a3380";
 export const ORANGE = "#ff9e21";
 export const BLUE = "#2ea6f7";
 export const TEAL = "#4ec8d8";
+
+/** Logo green — used for all primary buttons. */
+export const GREEN = "#98bb60";
+export const GREEN_DARK = "#87a854";
 export const MUTED = "#93919d";
 
 export const TEAL_GRADIENT = `linear-gradient(105deg, ${TEAL} 0%, ${BLUE} 100%)`;
