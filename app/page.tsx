@@ -914,7 +914,8 @@ function AccreditationCard() {
   return (
     <div className="relative pb-12">
       <div className="flex h-[220px] items-center justify-center rounded-xl bg-white shadow-[0_16px_40px_rgba(16,49,120,0.12)]">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/images/tjc-seal.png"
           alt="The Joint Commission National Quality Approval seal"
           width={435}
