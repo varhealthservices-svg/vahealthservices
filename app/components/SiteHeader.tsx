@@ -1,4 +1,4 @@
-import { BLUE, NAVY, NAV_LINKS, PHONE_DISPLAY, PHONE_HREF } from "./theme";
+import { GREEN, NAVY, NAV_LINKS, PHONE_DISPLAY, PHONE_HREF } from "./theme";
 
 export default function SiteHeader() {
   return (
@@ -32,7 +32,7 @@ export default function SiteHeader() {
         <a
           href={PHONE_HREF}
           className="rounded-full px-5 py-2.5 text-sm font-extrabold text-white shrink-0"
-          style={{ background: BLUE }}
+          style={{ background: GREEN }}
         >
           {PHONE_DISPLAY}
         </a>
