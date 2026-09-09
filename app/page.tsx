@@ -11,6 +11,7 @@ import {
   ORANGE,
   TEAL,
   TEAL_GRADIENT,
+  GREEN,
   PHONE_DISPLAY,
   PHONE_HREF,
 } from "./components/theme";
@@ -264,18 +265,6 @@ const CARE_LINES = [
     alt: "A home health nurse checking an older man's blood pressure in his living room",
     href: "/services",
   },
-  {
-    title: "Palliative Care",
-    src: "/images/home/palliative.webp",
-    alt: "A caregiver holding an elderly patient's hand over a soft blanket",
-    href: "/services",
-  },
-  {
-    title: "Hospice",
-    src: "/images/home/hospice.webp",
-    alt: "A quiet sunlit bedroom with an armchair and fresh flowers beside the bed",
-    href: "/services",
-  },
 ];
 
 /* Counters — whole numbers only, no percentages or quality ratings. */
@@ -504,14 +493,14 @@ export default function HomePage() {
               <a
                 href="/contact"
                 className="inline-block rounded-md px-7 py-3.5 text-sm font-extrabold text-white shadow-lg transition-transform hover:-translate-y-0.5"
-                style={{ background: BLUE }}
+                style={{ background: GREEN }}
               >
                 Schedule an In-Home Assessment
               </a>
               <a
                 href={PHONE_HREF}
                 className="inline-block rounded-md border-2 px-7 py-3 text-sm font-extrabold transition-colors"
-                style={{ borderColor: BLUE, color: BLUE }}
+                style={{ borderColor: GREEN, color: GREEN }}
               >
                 Call {PHONE_DISPLAY}
               </a>
@@ -565,10 +554,11 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- */}
       <section className="bg-[#f8f9fb] pb-24">
         <div className="mx-auto max-w-[1200px] px-6 -mt-32">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 gap-8 max-w-[860px] mx-auto">
             {CARE_LINES.map((card) => (
               <CareLineCard key={card.title} {...card} />
             ))}
+            <AccreditationCard />
           </div>
         </div>
 
@@ -671,9 +661,9 @@ export default function HomePage() {
           src="/images/home/recovery-wide.webp"
           alt="A therapist walking alongside an older man using a cane in his hallway"
           width={2000}
-          height={840}
+          height={900}
           sizes="100vw"
-          className="w-full h-[280px] md:h-[420px] object-cover"
+          className="w-full h-[320px] md:h-[480px] object-cover object-top"
         />
       </section>
 
@@ -730,7 +720,7 @@ export default function HomePage() {
             <a
               href="/services"
               className="rounded-md px-7 py-3 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
-              style={{ background: BLUE }}
+              style={{ background: GREEN }}
             >
               View All Services
             </a>
@@ -919,6 +909,35 @@ export default function HomePage() {
 /* -------------------------------------------------------------------------- */
 /*  Sub-components                                                            */
 /* -------------------------------------------------------------------------- */
+
+function AccreditationCard() {
+  return (
+    <div className="relative pb-12">
+      <div className="flex h-[220px] items-center justify-center rounded-xl bg-white shadow-[0_16px_40px_rgba(16,49,120,0.12)]">
+        <Image
+          src="/images/tjc-seal.png"
+          alt="The Joint Commission National Quality Approval seal"
+          width={435}
+          height={423}
+          className="h-[150px] w-auto"
+        />
+      </div>
+
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[86%] rounded-lg bg-white px-6 py-5 text-center shadow-[0_14px_34px_rgba(16,49,120,0.14)]">
+        <span className="block text-lg font-extrabold" style={{ color: NAVY }}>
+          Accredited by The Joint Commission
+        </span>
+        <span
+          className="mt-1.5 block text-[13px] leading-[1.6]"
+          style={{ color: MUTED }}
+        >
+          Independently reviewed against national standards for quality and
+          patient safety, and certified by Medicare and Medicaid.
+        </span>
+      </div>
+    </div>
+  );
+}
 
 function CareLineCard({
   title,
