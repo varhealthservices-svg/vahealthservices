@@ -13,7 +13,11 @@ export const GREEN = "#98bb60";
 export const GREEN_DARK = "#87a854";
 export const MUTED = "#93919d";
 
-export const TEAL_GRADIENT = `linear-gradient(105deg, ${TEAL} 0%, ${BLUE} 100%)`;
+/** Logo blue family — used for the full-width gradient bands. */
+export const LOGO_BLUE = "#055f9b";
+export const LOGO_BLUE_LIGHT = "#4487b4";
+
+export const TEAL_GRADIENT = `linear-gradient(105deg, ${LOGO_BLUE_LIGHT} 0%, ${LOGO_BLUE} 100%)`;
 
 export const PHONE_DISPLAY = "(703) 333-5288";
 export const PHONE_HREF = "tel:+17033335288";
